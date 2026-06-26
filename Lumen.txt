@@ -1,0 +1,148 @@
+
+Building configuration...
+
+Current configuration : 1601 bytes
+!
+! Last configuration change at 09:40:07 MST Thu Jun 18 2026
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R10
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+clock timezone MST -7 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+!
+no cdp log mismatch duplex
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ description R1 e0/3
+ ip address 100.65.0.10 255.255.255.252
+ duplex auto
+!
+interface Ethernet0/1
+ ip address 100.65.0.13 255.255.255.252
+ duplex auto
+!
+interface Ethernet0/2
+ no ip address
+ duplex auto
+!
+interface Ethernet0/3
+ no ip address
+ duplex auto
+!
+router bgp 64513
+ bgp router-id 100.65.0.10
+ bgp log-neighbor-changes
+ network 100.65.0.12 mask 255.255.255.252
+ neighbor 100.65.0.9 remote-as 64512
+ neighbor 100.65.0.9 soft-reconfiguration inbound
+ neighbor 100.65.0.9 route-map RM-DEFAULT in
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+ip prefix-list DEFAULT-ONLY seq 5 permit 0.0.0.0/0
+ipv6 ioam timestamp
+!
+route-map RM-DEFAULT permit 10
+ match ip address prefix-list DEFAULT-ONLY
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+ transport input none
+!
+!
+end
+
+R10#
