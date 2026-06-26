@@ -1,9 +1,6 @@
-sh run
-Building configuration...
-
-Current configuration : 1601 bytes
+Current configuration : 1379 bytes
 !
-! Last configuration change at 09:40:07 MST Thu Jun 18 2026
+! Last configuration change at 10:45:01 MST Fri Jun 26 2026
 !
 version 15.7
 service timestamps debug datetime msec
@@ -68,7 +65,7 @@ redundancy
 no cdp log mismatch duplex
 !
 ip tcp synwait-time 5
-! 
+!
 !
 !
 !
@@ -82,7 +79,6 @@ ip tcp synwait-time 5
 !
 !
 interface Ethernet0/0
- description R1 e0/3
  ip address 100.65.0.10 255.255.255.252
  duplex auto
 !
@@ -99,12 +95,10 @@ interface Ethernet0/3
  duplex auto
 !
 router bgp 64513
- bgp router-id 100.65.0.10
  bgp log-neighbor-changes
  network 100.65.0.12 mask 255.255.255.252
  neighbor 100.65.0.9 remote-as 64512
  neighbor 100.65.0.9 soft-reconfiguration inbound
- neighbor 100.65.0.9 route-map RM-DEFAULT in
 !
 ip forward-protocol nd
 !
@@ -112,12 +106,7 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
-!
-ip prefix-list DEFAULT-ONLY seq 5 permit 0.0.0.0/0
 ipv6 ioam timestamp
-!
-route-map RM-DEFAULT permit 10
- match ip address prefix-list DEFAULT-ONLY
 !
 !
 !
@@ -144,5 +133,3 @@ line vty 0 4
 !
 !
 end
-
-R10#
