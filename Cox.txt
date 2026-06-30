@@ -1,6 +1,9 @@
-Current configuration : 2124 bytes
+sh run
+Building configuration...
+
+Current configuration : 2167 bytes
 !
-! Last configuration change at 09:21:17 MST Fri Jun 26 2026
+! Last configuration change at 10:40:20 MST Tue Jun 30 2026
 !
 version 15.7
 service timestamps debug datetime msec localtime show-timezone year
@@ -69,7 +72,7 @@ redundancy
 no cdp log mismatch duplex
 !
 ip tcp synwait-time 5
-!
+! 
 !
 !
 !
@@ -102,6 +105,7 @@ interface Ethernet0/3
 router bgp 22773
  bgp router-id 100.65.0.6
  bgp log-neighbor-changes
+ network 72.212.185.0 mask 255.255.255.252
  network 98.181.88.200 mask 255.255.255.248
  neighbor 72.212.185.2 remote-as 32056
  neighbor 72.212.185.2 password 7 022B1D695B1E4E726C1C5C4D55
@@ -136,7 +140,7 @@ control-plane
 !
 !
 line con 0
- session-timeout 30
+ session-timeout 30 
  exec-timeout 0 0
  privilege level 15
  logging synchronous
@@ -153,3 +157,5 @@ line vty 0 4
 !
 !
 end
+
+Cox#

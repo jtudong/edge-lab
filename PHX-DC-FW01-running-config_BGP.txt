@@ -1,0 +1,285 @@
+----------------------- Terminal Log (Print Output) 6/30/2026 10:21:36 AM -----------------------
+shlab@PHX-DC-FW01_LAB# show 
+set deviceconfig system type dhcp-client send-hostname yes
+set deviceconfig system type dhcp-client send-client-id no
+set deviceconfig system type dhcp-client accept-dhcp-hostname no
+set deviceconfig system type dhcp-client accept-dhcp-domain no
+set deviceconfig system update-server updates.paloaltonetworks.com
+set deviceconfig system update-schedule 
+set deviceconfig system timezone America/Phoenix
+set deviceconfig system service disable-telnet yes
+set deviceconfig system service disable-http yes
+set deviceconfig system hostname PHX-DC-FW01_LAB
+set deviceconfig system dns-setting servers primary 208.67.222.222
+set deviceconfig system dns-setting servers secondary 4.2.2.1
+set deviceconfig system device-telemetry device-health-performance yes
+set deviceconfig system device-telemetry product-usage yes
+set deviceconfig system device-telemetry threat-prevention yes
+set deviceconfig system device-telemetry region Americas
+set deviceconfig setting config rematch yes
+set deviceconfig setting management hostname-type-in-syslog FQDN
+set deviceconfig setting management idle-timeout 480
+set deviceconfig setting auto-mac-detect yes
+set network interface ethernet ethernet1/1 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/1 layer3 sdwan-link-settings upstream-nat enable no
+set network interface ethernet ethernet1/1 layer3 sdwan-link-settings upstream-nat static-ip 
+set network interface ethernet ethernet1/1 layer3 sdwan-link-settings enable no
+set network interface ethernet ethernet1/1 layer3 sdwan-link-settings ipv6-enable no
+set network interface ethernet ethernet1/1 layer3 ip 63.156.58.20/24 
+set network interface ethernet ethernet1/1 layer3 lldp enable no
+set network interface ethernet ethernet1/1 layer3 interface-management-profile "Outside mgmt"
+set network interface ethernet ethernet1/1 comment Lumen
+set network interface ethernet ethernet1/2 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/2 layer3 sdwan-link-settings upstream-nat enable no
+set network interface ethernet ethernet1/2 layer3 sdwan-link-settings upstream-nat static-ip 
+set network interface ethernet ethernet1/2 layer3 sdwan-link-settings enable no
+set network interface ethernet ethernet1/2 layer3 sdwan-link-settings ipv6-enable no
+set network interface ethernet ethernet1/2 layer3 ip 172.17.1.20/16 
+set network interface ethernet ethernet1/2 layer3 lldp enable no
+set network interface ethernet ethernet1/2 layer3 interface-management-profile "inside mgmt"
+set network interface ethernet ethernet1/2 comment Inside
+set network interface ethernet ethernet1/3 layer3 ndp-proxy enabled no
+set network interface ethernet ethernet1/3 layer3 sdwan-link-settings upstream-nat enable no
+set network interface ethernet ethernet1/3 layer3 sdwan-link-settings upstream-nat static-ip 
+set network interface ethernet ethernet1/3 layer3 sdwan-link-settings enable no
+set network interface ethernet ethernet1/3 layer3 sdwan-link-settings ipv6-enable no
+set network interface ethernet ethernet1/3 layer3 ip 98.181.88.202/29 
+set network interface ethernet ethernet1/3 layer3 interface-management-profile "Outside mgmt"
+set network interface ethernet ethernet1/3 layer3 lldp enable no
+set network interface ethernet ethernet1/3 comment Cox
+set network interface tunnel units tunnel.300 ip 192.168.1.1/30 
+set network interface tunnel units tunnel.300 interface-management-profile "inside mgmt"
+set network interface tunnel units tunnel.300 comment "peer tunnel.1"
+set network interface loopback units loopback.5 adjust-tcp-mss enable no
+set network interface loopback units loopback.5 ip 63.156.58.5 
+set network interface loopback units loopback.5 interface-management-profile Ping
+set network profiles monitor-profile default interval 3
+set network profiles monitor-profile default threshold 5
+set network profiles monitor-profile default action wait-recover
+set network profiles interface-management-profile "inside mgmt" https yes
+set network profiles interface-management-profile "inside mgmt" ssh yes
+set network profiles interface-management-profile "inside mgmt" ping yes
+set network profiles interface-management-profile "Outside mgmt" ping yes
+set network profiles interface-management-profile Ping ping yes
+set network ike crypto-profiles ike-crypto-profiles default encryption [ aes-128-cbc 3des ]
+set network ike crypto-profiles ike-crypto-profiles default hash sha1
+set network ike crypto-profiles ike-crypto-profiles default dh-group group2
+set network ike crypto-profiles ike-crypto-profiles default lifetime hours 8
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 encryption aes-128-cbc
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 hash sha256
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 dh-group group19
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-128 lifetime hours 8
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 encryption aes-256-cbc
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 hash sha384
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 dh-group group20
+set network ike crypto-profiles ike-crypto-profiles Suite-B-GCM-256 lifetime hours 8
+set network ike crypto-profiles ipsec-crypto-profiles default esp encryption [ aes-128-cbc 3des ]
+set network ike crypto-profiles ipsec-crypto-profiles default esp authentication sha1
+set network ike crypto-profiles ipsec-crypto-profiles default dh-group group2
+set network ike crypto-profiles ipsec-crypto-profiles default lifetime hours 1
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 esp encryption aes-128-gcm
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 esp authentication none
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 dh-group group19
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-128 lifetime hours 1
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 esp encryption aes-256-gcm
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 esp authentication none
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 dh-group group20
+set network ike crypto-profiles ipsec-crypto-profiles Suite-B-GCM-256 lifetime hours 1
+set network ike crypto-profiles global-protect-app-crypto-profiles default encryption aes-128-cbc
+set network ike crypto-profiles global-protect-app-crypto-profiles default authentication sha1
+set network ike gateway AZFOODS-SITE1-GW authentication pre-shared-key key -AQ==fEqNCco3Yq9h5ZUglD3CZJT4lBs=TPKw8W+5h+VtffslpLSTkQ==
+set network ike gateway AZFOODS-SITE1-GW protocol ikev2 pq-ppk enabled no
+set network ike gateway AZFOODS-SITE1-GW protocol ikev2 pq-ppk negotiation-mode preferred
+set network ike gateway AZFOODS-SITE1-GW protocol ikev2 dpd enable yes
+set network ike gateway AZFOODS-SITE1-GW protocol ikev2 ike-crypto-profile Suite-B-GCM-256
+set network ike gateway AZFOODS-SITE1-GW protocol ikev1 dpd enable yes
+set network ike gateway AZFOODS-SITE1-GW protocol version ikev2
+set network ike gateway AZFOODS-SITE1-GW local-address ip 63.156.58.5
+set network ike gateway AZFOODS-SITE1-GW local-address interface loopback.5
+set network ike gateway AZFOODS-SITE1-GW protocol-common nat-traversal enable no
+set network ike gateway AZFOODS-SITE1-GW protocol-common fragmentation enable no
+set network ike gateway AZFOODS-SITE1-GW peer-address ip "site1 VPN Tunnel Peer IP 1"
+set network qos profile default class-bandwidth-type mbps class class1 priority real-time
+set network qos profile default class-bandwidth-type mbps class class2 priority high
+set network qos profile default class-bandwidth-type mbps class class3 priority high
+set network qos profile default class-bandwidth-type mbps class class4 priority medium
+set network qos profile default class-bandwidth-type mbps class class5 priority medium
+set network qos profile default class-bandwidth-type mbps class class6 priority low
+set network qos profile default class-bandwidth-type mbps class class7 priority low
+set network qos profile default class-bandwidth-type mbps class class8 priority low
+set network virtual-router L3-Routes ecmp algorithm ip-modulo 
+set network virtual-router L3-Routes protocol bgp routing-options graceful-restart enable yes
+set network virtual-router L3-Routes protocol bgp enable no
+set network virtual-router L3-Routes protocol rip enable no
+set network virtual-router L3-Routes protocol ospf enable yes
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 type normal 
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 bfd profile Inherit-vr-global-setting
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 enable yes
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 passive no
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 gr-delay 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 metric 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 priority 1
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 hello-interval 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 dead-counts 4
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 retransmit-interval 5
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 transit-delay 1
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/1 link-type broadcast 
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 bfd profile Inherit-vr-global-setting
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 enable yes
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 passive no
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 gr-delay 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 metric 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 priority 1
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 hello-interval 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 dead-counts 4
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 retransmit-interval 5
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 transit-delay 1
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface ethernet1/2 link-type broadcast 
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 bfd profile Inherit-vr-global-setting
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 enable yes
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 passive no
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 gr-delay 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 metric 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 priority 1
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 hello-interval 10
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 dead-counts 4
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 retransmit-interval 5
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 transit-delay 1
+set network virtual-router L3-Routes protocol ospf area 0.0.0.0 interface tunnel.300 link-type p2p 
+set network virtual-router L3-Routes protocol ospf router-id 63.156.58.20
+set network virtual-router L3-Routes protocol ospf reject-default-route no
+set network virtual-router L3-Routes protocol ospfv3 enable no
+set network virtual-router L3-Routes interface [ ethernet1/1 ethernet1/2 ethernet1/3 tunnel.300 loopback.5 ]
+set network tunnel ipsec AZFOODS_SITE1 auto-key ike-gateway AZFOODS-SITE1-GW 
+set network tunnel ipsec AZFOODS_SITE1 auto-key ipsec-crypto-profile Suite-B-GCM-256
+set network tunnel ipsec AZFOODS_SITE1 tunnel-monitor enable yes
+set network tunnel ipsec AZFOODS_SITE1 tunnel-monitor destination-ip 192.168.1.2
+set network tunnel ipsec AZFOODS_SITE1 tunnel-interface tunnel.300
+set shared application 
+set shared application-group 
+set shared service 
+set shared service-group 
+set shared botnet configuration http dynamic-dns enabled yes
+set shared botnet configuration http dynamic-dns threshold 5
+set shared botnet configuration http malware-sites enabled yes
+set shared botnet configuration http malware-sites threshold 5
+set shared botnet configuration http recent-domains enabled yes
+set shared botnet configuration http recent-domains threshold 5
+set shared botnet configuration http ip-domains enabled yes
+set shared botnet configuration http ip-domains threshold 10
+set shared botnet configuration http executables-from-unknown-sites enabled yes
+set shared botnet configuration http executables-from-unknown-sites threshold 5
+set shared botnet configuration other-applications irc yes
+set shared botnet configuration unknown-applications unknown-tcp destinations-per-hour 10
+set shared botnet configuration unknown-applications unknown-tcp sessions-per-hour 10
+set shared botnet configuration unknown-applications unknown-tcp session-length maximum-bytes 100
+set shared botnet configuration unknown-applications unknown-tcp session-length minimum-bytes 50
+set shared botnet configuration unknown-applications unknown-udp destinations-per-hour 10
+set shared botnet configuration unknown-applications unknown-udp sessions-per-hour 10
+set shared botnet configuration unknown-applications unknown-udp session-length maximum-bytes 100
+set shared botnet configuration unknown-applications unknown-udp session-length minimum-bytes 50
+set shared botnet report topn 100
+set shared botnet report scheduled yes
+set zone "L3 Untrust" network layer3 [ ethernet1/1 ethernet1/3 loopback.5 ]
+set zone L3-Trust network layer3 ethernet1/2
+set zone L3-Trust enable-user-identification yes
+set zone SITE-TO-SITE network layer3 tunnel.300
+set service-group 
+set service 
+set schedule 
+set rulebase security rules "allow ospf" to any
+set rulebase security rules "allow ospf" from any
+set rulebase security rules "allow ospf" source any
+set rulebase security rules "allow ospf" destination any
+set rulebase security rules "allow ospf" source-user any
+set rulebase security rules "allow ospf" category any
+set rulebase security rules "allow ospf" application ospf
+set rulebase security rules "allow ospf" service application-default
+set rulebase security rules "allow ospf" source-hip any
+set rulebase security rules "allow ospf" destination-hip any
+set rulebase security rules "allow ospf" action allow
+set rulebase security rules "allow ospf" log-start no
+set rulebase security rules "allow ospf" log-end yes
+set rulebase security rules "allow all" to [ "L3 Untrust" L3-Trust ]
+set rulebase security rules "allow all" from L3-Trust
+set rulebase security rules "allow all" source any
+set rulebase security rules "allow all" destination any
+set rulebase security rules "allow all" source-user any
+set rulebase security rules "allow all" category any
+set rulebase security rules "allow all" application any
+set rulebase security rules "allow all" service application-default
+set rulebase security rules "allow all" source-hip any
+set rulebase security rules "allow all" destination-hip any
+set rulebase security rules "allow all" action allow
+set rulebase security rules "allow all" log-start no
+set rulebase security rules "allow all" log-end yes
+set rulebase security rules "allow ping" to any
+set rulebase security rules "allow ping" from any
+set rulebase security rules "allow ping" source any
+set rulebase security rules "allow ping" destination any
+set rulebase security rules "allow ping" source-user any
+set rulebase security rules "allow ping" category any
+set rulebase security rules "allow ping" application ping
+set rulebase security rules "allow ping" service application-default
+set rulebase security rules "allow ping" source-hip any
+set rulebase security rules "allow ping" destination-hip any
+set rulebase security rules "allow ping" action allow
+set rulebase security rules "allow ping" log-start no
+set rulebase security rules "allow ping" log-end yes
+set rulebase security rules "Permit Site-To-Site Ike Traffic" to "L3 Untrust"
+set rulebase security rules "Permit Site-To-Site Ike Traffic" from "L3 Untrust"
+set rulebase security rules "Permit Site-To-Site Ike Traffic" source "SFC Remote-Site VPN Tunnel Peer IPs"
+set rulebase security rules "Permit Site-To-Site Ike Traffic" destination "SFC Remote-Site VPN Tunnel Peer IPs"
+set rulebase security rules "Permit Site-To-Site Ike Traffic" source-user any
+set rulebase security rules "Permit Site-To-Site Ike Traffic" category any
+set rulebase security rules "Permit Site-To-Site Ike Traffic" application [ ike ipsec ]
+set rulebase security rules "Permit Site-To-Site Ike Traffic" service application-default
+set rulebase security rules "Permit Site-To-Site Ike Traffic" source-hip any
+set rulebase security rules "Permit Site-To-Site Ike Traffic" destination-hip any
+set rulebase security rules "Permit Site-To-Site Ike Traffic" action allow
+set rulebase security rules "Permit Site-To-Site Ike Traffic" log-start no
+set rulebase security rules "Permit Site-To-Site Ike Traffic" log-end yes
+set rulebase security rules "Permit Site-To-Site Traffic" to any
+set rulebase security rules "Permit Site-To-Site Traffic" from any
+set rulebase security rules "Permit Site-To-Site Traffic" source any
+set rulebase security rules "Permit Site-To-Site Traffic" destination any
+set rulebase security rules "Permit Site-To-Site Traffic" source-user any
+set rulebase security rules "Permit Site-To-Site Traffic" category any
+set rulebase security rules "Permit Site-To-Site Traffic" application any
+set rulebase security rules "Permit Site-To-Site Traffic" service application-default
+set rulebase security rules "Permit Site-To-Site Traffic" source-hip any
+set rulebase security rules "Permit Site-To-Site Traffic" destination-hip any
+set rulebase security rules "Permit Site-To-Site Traffic" action allow
+set rulebase security rules "Permit Site-To-Site Traffic" log-start no
+set rulebase security rules "Permit Site-To-Site Traffic" log-end yes
+set rulebase nat rules "primary DIPP" source-translation dynamic-ip-and-port interface-address interface ethernet1/1
+set rulebase nat rules "primary DIPP" to "L3 Untrust"
+set rulebase nat rules "primary DIPP" from L3-Trust
+set rulebase nat rules "primary DIPP" source any
+set rulebase nat rules "primary DIPP" destination any
+set rulebase nat rules "primary DIPP" service any
+set rulebase nat rules "primary DIPP" to-interface ethernet1/1
+set rulebase default-security-rules rules interzone-default action deny
+set rulebase default-security-rules rules interzone-default log-start no
+set rulebase default-security-rules rules interzone-default log-end yes
+set rulebase default-security-rules rules intrazone-default action deny
+set rulebase default-security-rules rules intrazone-default log-start no
+set rulebase default-security-rules rules intrazone-default log-end yes
+set import network interface [ ethernet1/1 ethernet1/2 ethernet1/3 tunnel.300 loopback.5 ]
+set application-group 
+set application 
+set address-group "SFC Remote-Site VPN Tunnel Peer IPs" static [ "PHX-DC-VPN Tunnel Peer IP 1" "site1 VPN Tunnel Peer IP 1" ]
+set address "PHX-DC-VPN Tunnel Peer IP 1" ip-netmask 63.156.58.5
+set address "site1 VPN Tunnel Peer IP 1" ip-netmask 100.65.0.14
+set mgt-config users admin phash $5$xhblmqee$eKmu/34NiKZ3ujj4IO3CQyiGDQoOnUHUkIB2bkcbj65
+set mgt-config users admin permissions role-based superuser yes
+set mgt-config users __openconfig phash $5$vtajnhgc$VN5pzcuzeU2wCnlVyAsW8fY82Leo3IfFe.Pslajhst7
+set mgt-config users __openconfig permissions role-based deviceadmin localhost.localdomain
+set mgt-config users __telemetryuser phash $5$uoxvagnd$AXVz9bzv1AXIsgseiguwgSx2BhDgn5Yf2rPEGnUVruA
+set mgt-config users __telemetryuser permissions role-based deviceadmin localhost.localdomain
+set mgt-config users lab permissions role-based superuser yes
+set mgt-config users lab phash $5$thjlogci$r3m5WphqLczge8kbOM5fU3I7rqXg1ycrDc.wwRz/UN6
+set mgt-config password-complexity enabled yes
+set mgt-config password-complexity minimum-length 3
+[edit]                                                                          
+lab@PHX-DC-FW01_LAB# 

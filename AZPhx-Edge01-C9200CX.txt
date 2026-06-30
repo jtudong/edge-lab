@@ -62,7 +62,7 @@ spanning-tree extend system-id
 !
 !
 interface Ethernet0/0
- description --> Lumen
+ description *** Lumen 2Gbps 19/KGGS/871476 ***
  no switchport
  ip address 4.8.222.254 255.255.255.252
  no ip redirects
@@ -70,6 +70,7 @@ interface Ethernet0/0
  no ip proxy-arp
 !
 interface Ethernet0/1
+description *** LAN Block 63.156.58.0/24 ***
  no switchport
  ip address 63.156.58.1 255.255.255.0
  no ip redirects
@@ -97,6 +98,8 @@ router bgp 32056
  bgp log-neighbor-changes
  network 63.156.58.0 mask 255.255.255.0
  neighbor 4.8.222.253 remote-as 3356
+ neighbor 4.8.222.253 description 2Gbps Lumen
+ neighbor 4.8.222.253 send-community
  neighbor 4.8.222.253 soft-reconfiguration inbound
 !
 ip forward-protocol nd
@@ -108,7 +111,7 @@ ip http secure-server
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
-!
+ip bgp-community new-format
 !
 !
 !
