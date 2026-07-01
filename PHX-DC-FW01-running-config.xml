@@ -187,6 +187,19 @@
               </entry>
             </units>
           </tunnel>
+          <loopback>
+            <units>
+              <entry name="loopback.5">
+                <adjust-tcp-mss>
+                  <enable>no</enable>
+                </adjust-tcp-mss>
+                <ip>
+                  <entry name="63.156.58.5"/>
+                </ip>
+                <interface-management-profile>Ping</interface-management-profile>
+              </entry>
+            </units>
+          </loopback>
         </interface>
         <profiles>
           <monitor-profile>
@@ -203,6 +216,9 @@
               <ping>yes</ping>
             </entry>
             <entry name="Outside mgmt">
+              <ping>yes</ping>
+            </entry>
+            <entry name="Ping">
               <ping>yes</ping>
             </entry>
           </interface-management-profile>
@@ -336,8 +352,8 @@
                 <version>ikev2</version>
               </protocol>
               <local-address>
-                <ip>63.156.58.20/24</ip>
-                <interface>ethernet1/1</interface>
+                <ip>63.156.58.5</ip>
+                <interface>loopback.5</interface>
               </local-address>
               <protocol-common>
                 <nat-traversal>
@@ -467,6 +483,23 @@
                           <p2p/>
                         </link-type>
                       </entry>
+                      <entry name="ethernet1/3">
+                        <bfd>
+                          <profile>Inherit-vr-global-setting</profile>
+                        </bfd>
+                        <enable>yes</enable>
+                        <passive>no</passive>
+                        <gr-delay>10</gr-delay>
+                        <metric>20</metric>
+                        <priority>1</priority>
+                        <hello-interval>10</hello-interval>
+                        <dead-counts>4</dead-counts>
+                        <retransmit-interval>5</retransmit-interval>
+                        <transit-delay>1</transit-delay>
+                        <link-type>
+                          <broadcast/>
+                        </link-type>
+                      </entry>
                     </interface>
                   </entry>
                 </area>
@@ -481,6 +514,7 @@
               <member>ethernet1/1</member>
               <member>ethernet1/2</member>
               <member>ethernet1/3</member>
+              <member>loopback.5</member>
               <member>tunnel.300</member>
             </interface>
           </entry>
@@ -555,6 +589,7 @@
                 <layer3>
                   <member>ethernet1/1</member>
                   <member>ethernet1/3</member>
+                  <member>loopback.5</member>
                 </layer3>
               </network>
             </entry>
@@ -601,42 +636,6 @@
                   </category>
                   <application>
                     <member>ospf</member>
-                  </application>
-                  <service>
-                    <member>application-default</member>
-                  </service>
-                  <source-hip>
-                    <member>any</member>
-                  </source-hip>
-                  <destination-hip>
-                    <member>any</member>
-                  </destination-hip>
-                  <action>allow</action>
-                  <log-start>no</log-start>
-                  <log-end>yes</log-end>
-                </entry>
-                <entry name="allow all" uuid="483517e2-8e5a-4ecf-957e-bbf309253a75">
-                  <to>
-                    <member>L3 Untrust</member>
-                    <member>L3-Trust</member>
-                  </to>
-                  <from>
-                    <member>L3-Trust</member>
-                  </from>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
                   </application>
                   <service>
                     <member>application-default</member>
@@ -724,10 +723,12 @@
                 </entry>
                 <entry name="Permit Site-To-Site Traffic" uuid="ee0f9a45-de12-4353-b745-743bc62a1d23">
                   <to>
-                    <member>any</member>
+                    <member>L3-Trust</member>
+                    <member>SITE-TO-SITE</member>
                   </to>
                   <from>
-                    <member>any</member>
+                    <member>L3-Trust</member>
+                    <member>SITE-TO-SITE</member>
                   </from>
                   <source>
                     <member>any</member>
@@ -756,16 +757,91 @@
                   <action>allow</action>
                   <log-start>no</log-start>
                   <log-end>yes</log-end>
+                  <rule-type>interzone</rule-type>
+                </entry>
+                <entry name="Permit Site-To-Site Traffic Intrazone" uuid="11153e49-81ce-4556-a910-a263514cb492">
+                  <to>
+                    <member>SITE-TO-SITE</member>
+                  </to>
+                  <from>
+                    <member>SITE-TO-SITE</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <source-hip>
+                    <member>any</member>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <rule-type>intrazone</rule-type>
+                </entry>
+                <entry name="allow all" uuid="483517e2-8e5a-4ecf-957e-bbf309253a75">
+                  <to>
+                    <member>L3 Untrust</member>
+                    <member>L3-Trust</member>
+                    <member>SITE-TO-SITE</member>
+                  </to>
+                  <from>
+                    <member>L3-Trust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>any</member>
+                  </service>
+                  <source-hip>
+                    <member>any</member>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
                 </entry>
               </rules>
             </security>
             <nat>
               <rules>
-                <entry name="primary DIPP" uuid="303eccf4-d91d-4b8c-9005-45beca4820a8">
+                <entry name="Lumen DIPP" uuid="303eccf4-d91d-4b8c-9005-45beca4820a8">
                   <source-translation>
                     <dynamic-ip-and-port>
                       <interface-address>
                         <interface>ethernet1/1</interface>
+                        <ip>63.156.58.20/24</ip>
                       </interface-address>
                     </dynamic-ip-and-port>
                   </source-translation>
@@ -783,6 +859,30 @@
                   </destination>
                   <service>any</service>
                   <to-interface>ethernet1/1</to-interface>
+                </entry>
+                <entry name="Cox DIPP" uuid="357dc771-51e8-43a2-9738-572f355f457e">
+                  <source-translation>
+                    <dynamic-ip-and-port>
+                      <interface-address>
+                        <interface>ethernet1/3</interface>
+                        <ip>98.181.88.202/29</ip>
+                      </interface-address>
+                    </dynamic-ip-and-port>
+                  </source-translation>
+                  <to>
+                    <member>L3 Untrust</member>
+                  </to>
+                  <from>
+                    <member>L3-Trust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <service>any</service>
+                  <to-interface>ethernet1/3</to-interface>
                 </entry>
               </rules>
             </nat>
@@ -808,12 +908,13 @@
                 <member>ethernet1/2</member>
                 <member>ethernet1/3</member>
                 <member>tunnel.300</member>
+                <member>loopback.5</member>
               </interface>
             </network>
           </import>
           <address>
             <entry name="PHX-DC-VPN Tunnel Peer IP 1">
-              <ip-netmask>63.156.58.20</ip-netmask>
+              <ip-netmask>63.156.58.5</ip-netmask>
             </entry>
             <entry name="site1 VPN Tunnel Peer IP 1">
               <ip-netmask>100.65.0.14</ip-netmask>

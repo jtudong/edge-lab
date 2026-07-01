@@ -1,4 +1,4 @@
------------------------ Terminal Log (Print Output) 6/19/2026 9:52:07 AM -----------------------
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 17:07:12 =~=~=~=~=~=~=~=~=~=~=~=
 
 set deviceconfig system type dhcp-client send-client-id no
 set deviceconfig system type dhcp-client send-hostname yes
@@ -10,9 +10,6 @@ set deviceconfig system timezone America/Phoenix
 set deviceconfig system service disable-telnet yes
 set deviceconfig system service disable-http yes
 set deviceconfig system hostname site1-fw1
-set deviceconfig system ip-address 10.0.1.10
-set deviceconfig system netmask 255.255.255.0
-set deviceconfig system default-gateway 10.0.1.1
 set deviceconfig system dns-setting servers primary 8.8.8.8
 set deviceconfig system dns-setting servers secondary 4.2.2.1
 set deviceconfig system device-telemetry device-health-performance yes
@@ -36,7 +33,7 @@ set network interface ethernet ethernet1/2 layer3 sdwan-link-settings upstream-n
 set network interface ethernet ethernet1/2 layer3 sdwan-link-settings upstream-nat static-ip 
 set network interface ethernet ethernet1/2 layer3 sdwan-link-settings enable no
 set network interface ethernet ethernet1/2 layer3 sdwan-link-settings ipv6-enable no
-set network interface ethernet ethernet1/2 layer3 ip 10.0.1.1/24 
+set network interface ethernet ethernet1/2 layer3 ip 10.0.1.10/24 
 set network interface ethernet ethernet1/2 layer3 interface-management-profile "inside mgmt"
 set network interface ethernet ethernet1/2 layer3 lldp enable no
 set network interface ethernet ethernet1/2 comment inside
@@ -134,26 +131,34 @@ set network virtual-router VR1 protocol ospf router-id 10.0.1.1
 set network virtual-router VR1 protocol ospfv3 enable no
 set network virtual-router VR1 ecmp algorithm ip-modulo 
 set network virtual-router VR1 interface [ ethernet1/1 ethernet1/2 tunnel.1 ]
-set network virtual-router VR1 routing-table ip static-route default path-monitor monitor-destinations google enable yes
-set network virtual-router VR1 routing-table ip static-route default path-monitor monitor-destinations google source 100.65.0.14/30
-set network virtual-router VR1 routing-table ip static-route default path-monitor monitor-destinations google destination 8.8.8.8
-set network virtual-router VR1 routing-table ip static-route default path-monitor monitor-destinations google interval 3
-set network virtual-router VR1 routing-table ip static-route default path-monitor monitor-destinations google count 5
-set network virtual-router VR1 routing-table ip static-route default path-monitor enable yes
-set network virtual-router VR1 routing-table ip static-route default path-monitor failure-condition any
-set network virtual-router VR1 routing-table ip static-route default path-monitor hold-time 2
-set network virtual-router VR1 routing-table ip static-route default nexthop ip-address 100.65.0.13
-set network virtual-router VR1 routing-table ip static-route default bfd profile None
-set network virtual-router VR1 routing-table ip static-route default interface ethernet1/1
-set network virtual-router VR1 routing-table ip static-route default metric 10
-set network virtual-router VR1 routing-table ip static-route default destination 0.0.0.0/0
-set network virtual-router VR1 routing-table ip static-route default route-table unicast 
-set network virtual-router VR1 routing-table ip static-route shamrock nexthop ip-address 100.65.0.13
-set network virtual-router VR1 routing-table ip static-route shamrock bfd profile None
-set network virtual-router VR1 routing-table ip static-route shamrock interface ethernet1/1
-set network virtual-router VR1 routing-table ip static-route shamrock metric 10
-set network virtual-router VR1 routing-table ip static-route shamrock destination 63.156.58.0/24
-set network virtual-router VR1 routing-table ip static-route shamrock route-table unicast 
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor monitor-destinations google enable yes
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor monitor-destinations google source 100.65.0.14/30
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor monitor-destinations google destination 8.8.8.8
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor monitor-destinations google interval 3
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor monitor-destinations google count 5
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor enable yes
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor failure-condition any
+set network virtual-router VR1 routing-table ip static-route public_default path-monitor hold-time 2
+set network virtual-router VR1 routing-table ip static-route public_default nexthop ip-address 100.65.0.13
+set network virtual-router VR1 routing-table ip static-route public_default bfd profile None
+set network virtual-router VR1 routing-table ip static-route public_default interface ethernet1/1
+set network virtual-router VR1 routing-table ip static-route public_default metric 10
+set network virtual-router VR1 routing-table ip static-route public_default destination 0.0.0.0/0
+set network virtual-router VR1 routing-table ip static-route public_default route-table unicast 
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google enable yes
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google source 100.65.0.14/30
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google destination 8.8.8.8
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google interval 3
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google count 5
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor enable yes
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor failure-condition any
+set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor hold-time 2
+set network virtual-router VR1 routing-table ip static-route shamrock_default nexthop ip-address 100.65.0.13
+set network virtual-router VR1 routing-table ip static-route shamrock_default bfd profile None
+set network virtual-router VR1 routing-table ip static-route shamrock_default interface ethernet1/1
+set network virtual-router VR1 routing-table ip static-route shamrock_default metric 10
+set network virtual-router VR1 routing-table ip static-route shamrock_default destination 63.156.58.0/24
+set network virtual-router VR1 routing-table ip static-route shamrock_default route-table unicast 
 set network tunnel ipsec SITE1_AZFOODS auto-key ike-gateway SITE1-AZFOODS-GW 
 set network tunnel ipsec SITE1_AZFOODS auto-key ipsec-crypto-profile Suite-B-GCM-256
 set network tunnel ipsec SITE1_AZFOODS tunnel-monitor enable yes
@@ -197,19 +202,6 @@ set rulebase default-security-rules rules interzone-default log-end yes
 set rulebase default-security-rules rules intrazone-default action deny
 set rulebase default-security-rules rules intrazone-default log-start no
 set rulebase default-security-rules rules intrazone-default log-end yes
-set rulebase security rules "default allow" to [ Trust Untrust ]
-set rulebase security rules "default allow" from Trust
-set rulebase security rules "default allow" source any
-set rulebase security rules "default allow" destination any
-set rulebase security rules "default allow" source-user any
-set rulebase security rules "default allow" category any
-set rulebase security rules "default allow" application any
-set rulebase security rules "default allow" service application-default
-set rulebase security rules "default allow" source-hip any
-set rulebase security rules "default allow" destination-hip any
-set rulebase security rules "default allow" action allow
-set rulebase security rules "default allow" log-start no
-set rulebase security rules "default allow" log-end yes
 set rulebase security rules "allow ping" to any
 set rulebase security rules "allow ping" from any
 set rulebase security rules "allow ping" source any
@@ -236,8 +228,8 @@ set rulebase security rules "Permit Site-To-Site Ike Traffic" destination-hip an
 set rulebase security rules "Permit Site-To-Site Ike Traffic" action allow
 set rulebase security rules "Permit Site-To-Site Ike Traffic" log-start no
 set rulebase security rules "Permit Site-To-Site Ike Traffic" log-end yes
-set rulebase security rules "Permit Site-To-Site Traffic" to any
-set rulebase security rules "Permit Site-To-Site Traffic" from any
+set rulebase security rules "Permit Site-To-Site Traffic" to [ SITE-TO-SITE Trust ]
+set rulebase security rules "Permit Site-To-Site Traffic" from [ SITE-TO-SITE Trust ]
 set rulebase security rules "Permit Site-To-Site Traffic" source any
 set rulebase security rules "Permit Site-To-Site Traffic" destination any
 set rulebase security rules "Permit Site-To-Site Traffic" source-user any
@@ -249,6 +241,34 @@ set rulebase security rules "Permit Site-To-Site Traffic" destination-hip any
 set rulebase security rules "Permit Site-To-Site Traffic" action allow
 set rulebase security rules "Permit Site-To-Site Traffic" log-start no
 set rulebase security rules "Permit Site-To-Site Traffic" log-end yes
+set rulebase security rules "Permit Site-To-Site Traffic" rule-type interzone
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" to SITE-TO-SITE
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" from SITE-TO-SITE
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" source any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" destination any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" source-user any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" category any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" application any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" service application-default
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" source-hip any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" destination-hip any
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" action allow
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" log-start no
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" log-end yes
+set rulebase security rules "Permit Site-To-Site Traffic intrazone" rule-type intrazone
+set rulebase security rules "allow all" to [ Trust Untrust ]
+set rulebase security rules "allow all" from Trust
+set rulebase security rules "allow all" source any
+set rulebase security rules "allow all" destination any
+set rulebase security rules "allow all" source-user any
+set rulebase security rules "allow all" category any
+set rulebase security rules "allow all" application any
+set rulebase security rules "allow all" service any
+set rulebase security rules "allow all" source-hip any
+set rulebase security rules "allow all" destination-hip any
+set rulebase security rules "allow all" action allow
+set rulebase security rules "allow all" log-start no
+set rulebase security rules "allow all" log-end yes
 set rulebase nat rules "default DIPP" source-translation dynamic-ip-and-port interface-address ip 100.65.0.14/30
 set rulebase nat rules "default DIPP" source-translation dynamic-ip-and-port interface-address interface ethernet1/1
 set rulebase nat rules "default DIPP" to Untrust
@@ -261,13 +281,13 @@ set import network interface [ ethernet1/1 ethernet1/2 tunnel.1 ]
 set application-group 
 set application 
 set address-group "SFC Remote-Site VPN Tunnel Peer IPs" static [ "PHX-DC-VPN Tunnel Peer IP 1" "site1 VPN Tunnel Peer IP 1" ]
-set address "PHX-DC-VPN Tunnel Peer IP 1" ip-netmask 63.156.58.20
+set address "PHX-DC-VPN Tunnel Peer IP 1" ip-netmask 63.156.58.5
 set address "site1 VPN Tunnel Peer IP 1" ip-netmask 100.65.0.14
 set mgt-config users admin phash $5$mftjwhfs$QC3ovRXVLYQ5ZRl.cMeF6kp72O0gGql0lrvbOju88r0
 set mgt-config users admin permissions role-based superuser yes
-set mgt-config users __openconfig phash $5$rswqkiqg$6Mp4tQlPt0v8AK3A2yG3uh.bMwDYrF3lqYBteBAI5a/
+set mgt-config users __openconfig phash $5$exchgkfx$noP.Qx86rRznz6eBi8Ijd6IALMWsQpidhV8OmMdsgG5
 set mgt-config users __openconfig permissions role-based deviceadmin localhost.localdomain
-set mgt-config users __telemetryuser phash $5$ccsureyo$sQ.Dx53HTyC/SmYNteCBExeFmuJybwtYPTjf/DNMDyB
+set mgt-config users __telemetryuser phash $5$ksctdssr$3mNm8WwUpRr/98.uGLxsYOEHwvqYs3LqpfAx1HUQaW5
 set mgt-config users __telemetryuser permissions role-based deviceadmin localhost.localdomain
 set mgt-config users lab permissions role-based superuser yes
 set mgt-config users lab phash $5$nvfoembx$hsvtscJP1PzQmZ6weKOH3DXMHKuDNzYGf5iXWEkgJ.1

@@ -1,7 +1,11 @@
-Current configuration : 2690 bytes
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 17:00:42 =~=~=~=~=~=~=~=~=~=~=~=
+
+Building configuration...
+
+Current configuration : 2841 bytes
 !
-! Last configuration change at 16:08:22 MST Wed Jun 17 2026
-! NVRAM config last updated at 09:53:49 MST Fri Jun 26 2026
+! Last configuration change at 14:25:39 MST Tue Jun 30 2026
+! NVRAM config last updated at 16:55:20 MST Tue Jun 30 2026
 !
 version 15.7
 service timestamps debug datetime msec
@@ -75,7 +79,7 @@ redundancy
 no cdp log mismatch duplex
 !
 ip tcp synwait-time 5
-!
+! 
 !
 !
 !
@@ -134,12 +138,15 @@ router bgp 64512
  neighbor 100.65.0.2 remote-as 3356
  neighbor 100.65.0.2 description Lumen
  neighbor 100.65.0.2 default-originate
+ neighbor 100.65.0.2 soft-reconfiguration inbound
  neighbor 100.65.0.6 remote-as 22773
  neighbor 100.65.0.6 description Cox
  neighbor 100.65.0.6 default-originate
+ neighbor 100.65.0.6 soft-reconfiguration inbound
  neighbor 100.65.0.10 remote-as 64513
  neighbor 100.65.0.10 description Site1
  neighbor 100.65.0.10 default-originate
+ neighbor 100.65.0.10 soft-reconfiguration inbound
 !
 ip forward-protocol nd
 !
@@ -163,7 +170,7 @@ control-plane
 !
 !
 line con 0
- session-timeout 30
+ session-timeout 30 
  exec-timeout 0 0
  privilege level 15
  logging synchronous
@@ -184,3 +191,5 @@ ntp server 34.202.215.187
 ntp server time2.google.com prefer
 !
 end
+
+R1#

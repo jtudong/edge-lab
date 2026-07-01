@@ -1,6 +1,10 @@
-Current configuration : 3683 bytes
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 16:58:19 =~=~=~=~=~=~=~=~=~=~=~=
+
+Building configuration...
+
+Current configuration : 3843 bytes
 !
-! Last configuration change at 16:03:27 mst Thu Jun 25 2026
+! Last configuration change at 15:17:00 mst Tue Jun 30 2026
 !
 version 15.2
 service timestamps debug datetime msec localtime show-timezone year
@@ -23,6 +27,7 @@ clock timezone mst -7 0
 !
 !
 vtp mode off
+no ip icmp rate-limit unreachable
 !
 !
 !
@@ -35,7 +40,7 @@ login on-success log
 no ipv6 cef
 !
 !
-object-group network centurylink
+object-group network centurylink 
  204.155.129.128 255.255.255.128
  204.155.140.128 255.255.255.128
  204.155.141.128 255.255.255.128
@@ -48,7 +53,7 @@ object-group network centurylink
  199.168.32.0 255.255.255.0
  199.168.33.0 255.255.255.0
 !
-object-group network time
+object-group network time 
  host 132.63.4.103
  host 132.63.4.101
  host 192.43.244.18
@@ -58,7 +63,7 @@ spanning-tree mode pvst
 spanning-tree extend system-id
 !
 !
-!
+! 
 !
 !
 !
@@ -116,11 +121,12 @@ router bgp 32056
 ip forward-protocol nd
 !
 ip bgp-community new-format
+ip tcp synwait-time 5
 no ip http server
 ip http access-class 23
 ip http authentication local
 no ip http secure-server
-ip http timeout-policy idle 60 life 86400 requests 10000
+ip http timeout-policy idle 60 life 86400 requests 10000 
 !
 ip route 0.0.0.0 0.0.0.0 72.212.185.1 190
 ip route 8.8.4.4 255.255.255.255 4.42.125.121
@@ -171,10 +177,18 @@ control-plane
 !
 !
 line con 0
+ exec-timeout 0 0
+ privilege level 15
  logging synchronous
 line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
 line vty 0 4
+ login
 !
 !
 !
 end
+
+AZPhx-Edge02-C9200CX#

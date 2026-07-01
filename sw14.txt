@@ -1,0 +1,111 @@
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 17:02:00 =~=~=~=~=~=~=~=~=~=~=~=
+
+Building configuration...
+
+Current configuration : 1364 bytes
+!
+! Last configuration change at 09:52:25 MST Tue Jun 23 2026
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname sw14
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+clock timezone MST -7 0
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+no ip domain-lookup
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface Ethernet0/1
+ switchport access vlan 4
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface Ethernet0/2
+!
+interface Ethernet0/3
+!
+interface Vlan1
+ ip address 172.17.1.31 255.255.0.0
+!
+interface Vlan4
+ ip address 172.16.36.1 255.255.252.0
+!
+router ospf 10
+ router-id 192.168.0.1
+ network 172.16.36.0 0.0.3.255 area 0
+ network 172.17.0.0 0.0.255.255 area 0
+!
+ip forward-protocol nd
+!
+ip tcp synwait-time 5
+ip http server
+ip http secure-server
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+!
+end
+
+sw14#

@@ -143,7 +143,7 @@
                   <ipv6-enable>no</ipv6-enable>
                 </sdwan-link-settings>
                 <ip>
-                  <entry name="10.0.1.1/24"/>
+                  <entry name="10.0.1.10/24"/>
                 </ip>
                 <interface-management-profile>inside mgmt</interface-management-profile>
                 <lldp>
@@ -455,7 +455,7 @@
             <routing-table>
               <ip>
                 <static-route>
-                  <entry name="default">
+                  <entry name="public_default">
                     <path-monitor>
                       <monitor-destinations>
                         <entry name="google">
@@ -483,7 +483,21 @@
                       <unicast/>
                     </route-table>
                   </entry>
-                  <entry name="shamrock">
+                  <entry name="shamrock_default">
+                    <path-monitor>
+                      <monitor-destinations>
+                        <entry name="google">
+                          <enable>yes</enable>
+                          <source>100.65.0.14/30</source>
+                          <destination>8.8.8.8</destination>
+                          <interval>3</interval>
+                          <count>5</count>
+                        </entry>
+                      </monitor-destinations>
+                      <enable>yes</enable>
+                      <failure-condition>any</failure-condition>
+                      <hold-time>2</hold-time>
+                    </path-monitor>
                     <nexthop>
                       <ip-address>100.65.0.13</ip-address>
                     </nexthop>
@@ -538,9 +552,6 @@
             <disable-http>yes</disable-http>
           </service>
           <hostname>site1-fw1</hostname>
-          <ip-address>10.0.1.10</ip-address>
-          <netmask>255.255.255.0</netmask>
-          <default-gateway>10.0.1.1</default-gateway>
           <dns-setting>
             <servers>
               <primary>8.8.8.8</primary>
@@ -612,42 +623,6 @@
             </default-security-rules>
             <security>
               <rules>
-                <entry name="default allow" uuid="163047e2-2740-4cfe-bede-637116c60bd9">
-                  <to>
-                    <member>Trust</member>
-                    <member>Untrust</member>
-                  </to>
-                  <from>
-                    <member>Trust</member>
-                  </from>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>application-default</member>
-                  </service>
-                  <source-hip>
-                    <member>any</member>
-                  </source-hip>
-                  <destination-hip>
-                    <member>any</member>
-                  </destination-hip>
-                  <action>allow</action>
-                  <log-start>no</log-start>
-                  <log-end>yes</log-end>
-                </entry>
                 <entry name="allow ping" uuid="29812347-ac59-4a6b-979a-87e5adeb1498">
                   <to>
                     <member>any</member>
@@ -721,10 +696,12 @@
                 </entry>
                 <entry name="Permit Site-To-Site Traffic" uuid="c58767a8-1acd-4d26-a646-25c34a3285b7">
                   <to>
-                    <member>any</member>
+                    <member>SITE-TO-SITE</member>
+                    <member>Trust</member>
                   </to>
                   <from>
-                    <member>any</member>
+                    <member>SITE-TO-SITE</member>
+                    <member>Trust</member>
                   </from>
                   <source>
                     <member>any</member>
@@ -743,6 +720,79 @@
                   </application>
                   <service>
                     <member>application-default</member>
+                  </service>
+                  <source-hip>
+                    <member>any</member>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <rule-type>interzone</rule-type>
+                </entry>
+                <entry name="Permit Site-To-Site Traffic intrazone" uuid="55aa37fb-cf87-4879-8906-33355fdeab78">
+                  <to>
+                    <member>SITE-TO-SITE</member>
+                  </to>
+                  <from>
+                    <member>SITE-TO-SITE</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <source-hip>
+                    <member>any</member>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <rule-type>intrazone</rule-type>
+                </entry>
+                <entry name="allow all" uuid="163047e2-2740-4cfe-bede-637116c60bd9">
+                  <to>
+                    <member>Trust</member>
+                    <member>Untrust</member>
+                  </to>
+                  <from>
+                    <member>Trust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>any</member>
                   </service>
                   <source-hip>
                     <member>any</member>
@@ -796,7 +846,7 @@
           </import>
           <address>
             <entry name="PHX-DC-VPN Tunnel Peer IP 1">
-              <ip-netmask>63.156.58.20</ip-netmask>
+              <ip-netmask>63.156.58.5</ip-netmask>
             </entry>
             <entry name="site1 VPN Tunnel Peer IP 1">
               <ip-netmask>100.65.0.14</ip-netmask>

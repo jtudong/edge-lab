@@ -1,9 +1,10 @@
-sh run
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 16:57:18 =~=~=~=~=~=~=~=~=~=~=~=
+
 Building configuration...
 
-Current configuration : 2167 bytes
+Current configuration : 2249 bytes
 !
-! Last configuration change at 10:40:20 MST Tue Jun 30 2026
+! Last configuration change at 15:34:41 MST Tue Jun 30 2026
 !
 version 15.7
 service timestamps debug datetime msec localtime show-timezone year
@@ -112,6 +113,7 @@ router bgp 22773
  neighbor 72.212.185.2 soft-reconfiguration inbound
  neighbor 72.212.185.2 route-map SET-LP-90 in
  neighbor 100.65.0.5 remote-as 64512
+ neighbor 100.65.0.5 soft-reconfiguration inbound
 !
 ip forward-protocol nd
 !
@@ -127,6 +129,8 @@ ipv6 ioam timestamp
 route-map SET-LP-90 permit 10
  match community SHAMROCK
  set local-preference 90
+!
+route-map SET-LP-90 permit 20
 !
 !
 !
