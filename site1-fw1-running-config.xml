@@ -436,7 +436,7 @@
                     </interface>
                   </entry>
                 </area>
-                <router-id>10.0.1.1</router-id>
+                <router-id>10.0.1.10</router-id>
               </ospf>
               <ospfv3>
                 <enable>no</enable>
