@@ -483,34 +483,6 @@
                       <unicast/>
                     </route-table>
                   </entry>
-                  <entry name="shamrock_default">
-                    <path-monitor>
-                      <monitor-destinations>
-                        <entry name="google">
-                          <enable>yes</enable>
-                          <source>100.65.0.14/30</source>
-                          <destination>8.8.8.8</destination>
-                          <interval>3</interval>
-                          <count>5</count>
-                        </entry>
-                      </monitor-destinations>
-                      <enable>yes</enable>
-                      <failure-condition>any</failure-condition>
-                      <hold-time>2</hold-time>
-                    </path-monitor>
-                    <nexthop>
-                      <ip-address>100.65.0.13</ip-address>
-                    </nexthop>
-                    <bfd>
-                      <profile>None</profile>
-                    </bfd>
-                    <interface>ethernet1/1</interface>
-                    <metric>10</metric>
-                    <destination>63.156.58.0/24</destination>
-                    <route-table>
-                      <unicast/>
-                    </route-table>
-                  </entry>
                 </static-route>
               </ip>
             </routing-table>

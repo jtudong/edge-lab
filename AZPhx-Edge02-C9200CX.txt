@@ -1,10 +1,13 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.07.02 16:42:04 =~=~=~=~=~=~=~=~=~=~=~=
-sh run
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:39:06 =~=~=~=~=~=~=~=~=~=~=~=
+
+AZPhx-Edge02-C9200CX#term len 0
+AZPhx-Edge02-C9200CX#sh run
 Building configuration...
 
-Current configuration : 2764 bytes
+Current configuration : 2716 bytes
 !
-! Last configuration change at 16:31:10 mst Thu Jul 2 2026
+! Last configuration change at 10:03:32 mst Thu Sep 3 2026
+! NVRAM config last updated at 11:05:48 mst Thu Sep 3 2026
 !
 version 15.2
 service timestamps debug datetime msec localtime show-timezone year
@@ -66,7 +69,7 @@ interface Ethernet0/0
 interface Ethernet0/1
  description *** LAN BLOCK ***
  no switchport
- ip address 98.181.88.201 255.255.255.248
+ ip address 192.168.16.41 255.255.255.248
  no ip redirects
  no ip unreachables
  no ip proxy-arp
@@ -84,21 +87,17 @@ interface Ethernet1/2
 !
 interface Ethernet1/3
 !
-router ospf 10
- router-id 98.181.88.201
- network 72.212.185.0 0.0.0.3 area 0
- network 98.181.88.200 0.0.0.7 area 0
- default-information originate metric 5
-!
 router bgp 32056
  bgp log-neighbor-changes
- network 63.156.58.0 mask 255.255.255.0
  neighbor 72.212.185.1 remote-as 22773
  neighbor 72.212.185.1 password 7 022B1D695B1E4E726C1C5C4D55
  neighbor 72.212.185.1 send-community
  neighbor 72.212.185.1 soft-reconfiguration inbound
  neighbor 72.212.185.1 route-map InboundRm in
  neighbor 72.212.185.1 route-map OutboundRM out
+ neighbor 192.168.16.42 remote-as 32056
+ neighbor 192.168.16.42 next-hop-self
+ neighbor 192.168.16.42 soft-reconfiguration inbound
 !
 ip forward-protocol nd
 !
@@ -108,8 +107,6 @@ no ip http server
 ip http authentication local
 no ip http secure-server
 !
-ip route 0.0.0.0 0.0.0.0 72.212.185.1 190
-ip route 63.156.58.0 255.255.255.0 98.181.88.202
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
@@ -151,6 +148,8 @@ line aux 0
 line vty 0 4
  login
 !
+ntp server pool.ntp.org
+ntp server 34.208.249.133
 !
 !
 end

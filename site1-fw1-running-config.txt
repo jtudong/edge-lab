@@ -1,4 +1,4 @@
-
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 13:22:48 =~=~=~=~=~=~=~=~=~=~=~=
 set deviceconfig system type dhcp-client send-client-id no
 set deviceconfig system type dhcp-client send-hostname yes
 set deviceconfig system type dhcp-client accept-dhcp-hostname no
@@ -144,20 +144,6 @@ set network virtual-router VR1 routing-table ip static-route public_default inte
 set network virtual-router VR1 routing-table ip static-route public_default metric 10
 set network virtual-router VR1 routing-table ip static-route public_default destination 0.0.0.0/0
 set network virtual-router VR1 routing-table ip static-route public_default route-table unicast 
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google enable yes
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google source 100.65.0.14/30
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google destination 8.8.8.8
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google interval 3
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor monitor-destinations google count 5
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor enable yes
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor failure-condition any
-set network virtual-router VR1 routing-table ip static-route shamrock_default path-monitor hold-time 2
-set network virtual-router VR1 routing-table ip static-route shamrock_default nexthop ip-address 100.65.0.13
-set network virtual-router VR1 routing-table ip static-route shamrock_default bfd profile None
-set network virtual-router VR1 routing-table ip static-route shamrock_default interface ethernet1/1
-set network virtual-router VR1 routing-table ip static-route shamrock_default metric 10
-set network virtual-router VR1 routing-table ip static-route shamrock_default destination 63.156.58.0/24
-set network virtual-router VR1 routing-table ip static-route shamrock_default route-table unicast 
 set network tunnel ipsec SITE1_AZFOODS auto-key ike-gateway SITE1-AZFOODS-GW 
 set network tunnel ipsec SITE1_AZFOODS auto-key ipsec-crypto-profile Suite-B-GCM-256
 set network tunnel ipsec SITE1_AZFOODS tunnel-monitor enable yes

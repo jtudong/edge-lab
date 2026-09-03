@@ -1,10 +1,13 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 13:10:06 =~=~=~=~=~=~=~=~=~=~=~=
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:40:32 =~=~=~=~=~=~=~=~=~=~=~=
 
+AZPhx-FS-PUB-S01>en
+AZPhx-FS-PUB-S01#term len 0
+AZPhx-FS-PUB-S01#sh run
 Building configuration...
 
-Current configuration : 933 bytes
+Current configuration : 946 bytes
 !
-! Last configuration change at 13:09:49 MST Tue Jun 30 2026
+! Last configuration change at 15:07:17 MST Thu Aug 20 2026
 !
 version 15.2
 service timestamps debug datetime msec
@@ -69,8 +72,8 @@ interface Ethernet1/3
 !
 ip forward-protocol nd
 !
-ip http server
-ip http secure-server
+no ip http server
+no ip http secure-server
 !
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
@@ -86,6 +89,7 @@ line con 0
  logging synchronous
 line aux 0
 line vty 0 4
+ login
 !
 !
 !

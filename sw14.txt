@@ -1,10 +1,12 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 17:02:00 =~=~=~=~=~=~=~=~=~=~=~=
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 13:25:16 =~=~=~=~=~=~=~=~=~=~=~=
 
+sw14#term len 0
+sw14#sh run
 Building configuration...
 
 Current configuration : 1364 bytes
 !
-! Last configuration change at 09:52:25 MST Tue Jun 23 2026
+! Last configuration change at 14:51:54 MST Thu Aug 27 2026
 !
 version 15.2
 service timestamps debug datetime msec
@@ -73,7 +75,7 @@ interface Vlan4
  ip address 172.16.36.1 255.255.252.0
 !
 router ospf 10
- router-id 192.168.0.1
+ router-id 172.17.1.31
  network 172.16.36.0 0.0.3.255 area 0
  network 172.17.0.0 0.0.255.255 area 0
 !

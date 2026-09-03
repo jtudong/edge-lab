@@ -1,11 +1,13 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.06.30 16:59:36 =~=~=~=~=~=~=~=~=~=~=~=
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:44:17 =~=~=~=~=~=~=~=~=~=~=~=
 
+Lumen#term len 0
+Lumen#sh run
 Building configuration...
 
-Current configuration : 1844 bytes
+Current configuration : 1828 bytes
 !
-! Last configuration change at 11:18:42 MST Tue Jun 30 2026
-! NVRAM config last updated at 16:54:47 MST Tue Jun 30 2026
+! No configuration change since last restart
+! NVRAM config last updated at 11:06:22 MST Thu Sep 3 2026
 !
 version 15.7
 service timestamps debug datetime msec
@@ -147,8 +149,8 @@ line vty 0 4
  login
  transport input none
 !
-ntp server time2.google.com prefer
 ntp server time.google.com
+ntp server time2.google.com prefer
 !
 end
 

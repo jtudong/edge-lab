@@ -121,6 +121,7 @@
                 </sdwan-link-settings>
                 <ip>
                   <entry name="63.156.58.20/24"/>
+                  <entry name="192.168.16.34/29"/>
                 </ip>
                 <lldp>
                   <enable>no</enable>
@@ -167,6 +168,7 @@
                 </sdwan-link-settings>
                 <ip>
                   <entry name="98.181.88.202/29"/>
+                  <entry name="192.168.16.42/29"/>
                 </ip>
                 <interface-management-profile>Outside mgmt</interface-management-profile>
                 <lldp>
@@ -419,7 +421,119 @@
                     <enable>yes</enable>
                   </graceful-restart>
                 </routing-options>
-                <enable>no</enable>
+                <enable>yes</enable>
+                <peer-group>
+                  <entry name="EDGE">
+                    <type>
+                      <ibgp>
+                        <export-nexthop>use-self</export-nexthop>
+                      </ibgp>
+                    </type>
+                    <peer>
+                      <entry name="azphx-edge01-c9200cx">
+                        <peer-address>
+                          <ip>192.168.16.33</ip>
+                        </peer-address>
+                        <connection-options>
+                          <incoming-bgp-connection>
+                            <remote-port>0</remote-port>
+                            <allow>yes</allow>
+                          </incoming-bgp-connection>
+                          <outgoing-bgp-connection>
+                            <local-port>0</local-port>
+                            <allow>yes</allow>
+                          </outgoing-bgp-connection>
+                          <multihop>0</multihop>
+                          <keep-alive-interval>30</keep-alive-interval>
+                          <open-delay-time>0</open-delay-time>
+                          <hold-time>90</hold-time>
+                          <idle-hold-time>15</idle-hold-time>
+                          <min-route-adv-interval>30</min-route-adv-interval>
+                        </connection-options>
+                        <subsequent-address-family-identifier>
+                          <unicast>yes</unicast>
+                          <multicast>no</multicast>
+                        </subsequent-address-family-identifier>
+                        <local-address>
+                          <ip>192.168.16.34/29</ip>
+                          <interface>ethernet1/1</interface>
+                        </local-address>
+                        <bfd>
+                          <profile>Inherit-vr-global-setting</profile>
+                        </bfd>
+                        <max-prefixes>5000</max-prefixes>
+                        <enable>yes</enable>
+                        <peer-as>32056</peer-as>
+                        <enable-mp-bgp>no</enable-mp-bgp>
+                        <address-family-identifier>ipv4</address-family-identifier>
+                        <enable-sender-side-loop-detection>yes</enable-sender-side-loop-detection>
+                        <reflector-client>non-client</reflector-client>
+                        <peering-type>unspecified</peering-type>
+                      </entry>
+                      <entry name="azphx-edge02-c9200cx">
+                        <peer-address>
+                          <ip>192.168.16.41</ip>
+                        </peer-address>
+                        <connection-options>
+                          <incoming-bgp-connection>
+                            <remote-port>0</remote-port>
+                            <allow>yes</allow>
+                          </incoming-bgp-connection>
+                          <outgoing-bgp-connection>
+                            <local-port>0</local-port>
+                            <allow>yes</allow>
+                          </outgoing-bgp-connection>
+                          <multihop>0</multihop>
+                          <keep-alive-interval>30</keep-alive-interval>
+                          <open-delay-time>0</open-delay-time>
+                          <hold-time>90</hold-time>
+                          <idle-hold-time>15</idle-hold-time>
+                          <min-route-adv-interval>30</min-route-adv-interval>
+                        </connection-options>
+                        <subsequent-address-family-identifier>
+                          <unicast>yes</unicast>
+                          <multicast>no</multicast>
+                        </subsequent-address-family-identifier>
+                        <local-address>
+                          <ip>192.168.16.42/29</ip>
+                          <interface>ethernet1/3</interface>
+                        </local-address>
+                        <bfd>
+                          <profile>Inherit-vr-global-setting</profile>
+                        </bfd>
+                        <max-prefixes>5000</max-prefixes>
+                        <enable>yes</enable>
+                        <peer-as>32056</peer-as>
+                        <enable-mp-bgp>no</enable-mp-bgp>
+                        <address-family-identifier>ipv4</address-family-identifier>
+                        <enable-sender-side-loop-detection>yes</enable-sender-side-loop-detection>
+                        <reflector-client>non-client</reflector-client>
+                        <peering-type>unspecified</peering-type>
+                      </entry>
+                    </peer>
+                    <aggregated-confed-as-path>yes</aggregated-confed-as-path>
+                    <soft-reset-with-stored-info>no</soft-reset-with-stored-info>
+                    <enable>yes</enable>
+                  </entry>
+                </peer-group>
+                <redist-rules>
+                  <entry name="63.156.58.0">
+                    <address-family-identifier>ipv4</address-family-identifier>
+                    <enable>yes</enable>
+                    <set-origin>incomplete</set-origin>
+                    <metric>16384</metric>
+                  </entry>
+                  <entry name="98.181.88.200">
+                    <address-family-identifier>ipv4</address-family-identifier>
+                    <enable>yes</enable>
+                    <set-origin>incomplete</set-origin>
+                    <metric>16384</metric>
+                  </entry>
+                </redist-rules>
+                <reject-default-route>no</reject-default-route>
+                <router-id>63.156.58.20</router-id>
+                <local-as>32056</local-as>
+                <install-route>yes</install-route>
               </bgp>
               <rip>
                 <enable>no</enable>
@@ -432,23 +546,6 @@
                       <normal/>
                     </type>
                     <interface>
-                      <entry name="ethernet1/1">
-                        <bfd>
-                          <profile>Inherit-vr-global-setting</profile>
-                        </bfd>
-                        <enable>yes</enable>
-                        <passive>no</passive>
-                        <gr-delay>10</gr-delay>
-                        <metric>10</metric>
-                        <priority>1</priority>
-                        <hello-interval>10</hello-interval>
-                        <dead-counts>4</dead-counts>
-                        <retransmit-interval>5</retransmit-interval>
-                        <transit-delay>1</transit-delay>
-                        <link-type>
-                          <broadcast/>
-                        </link-type>
-                      </entry>
                       <entry name="ethernet1/2">
                         <bfd>
                           <profile>Inherit-vr-global-setting</profile>
@@ -483,32 +580,66 @@
                           <p2p/>
                         </link-type>
                       </entry>
-                      <entry name="ethernet1/3">
-                        <bfd>
-                          <profile>Inherit-vr-global-setting</profile>
-                        </bfd>
-                        <enable>yes</enable>
-                        <passive>no</passive>
-                        <gr-delay>10</gr-delay>
-                        <metric>20</metric>
-                        <priority>1</priority>
-                        <hello-interval>10</hello-interval>
-                        <dead-counts>4</dead-counts>
-                        <retransmit-interval>5</retransmit-interval>
-                        <transit-delay>1</transit-delay>
-                        <link-type>
-                          <broadcast/>
-                        </link-type>
-                      </entry>
                     </interface>
                   </entry>
                 </area>
                 <router-id>63.156.58.20</router-id>
                 <reject-default-route>no</reject-default-route>
+                <export-rules>
+                  <entry name="default route">
+                    <new-path-type>ext-2</new-path-type>
+                    <metric>100</metric>
+                  </entry>
+                </export-rules>
+                <allow-redist-default-route>yes</allow-redist-default-route>
               </ospf>
               <ospfv3>
                 <enable>no</enable>
               </ospfv3>
+              <redist-profile>
+                <entry name="63.156.58.0">
+                  <filter>
+                    <type>
+                      <member>connect</member>
+                    </type>
+                    <destination>
+                      <member>63.156.58.0/24</member>
+                    </destination>
+                  </filter>
+                  <priority>10</priority>
+                  <action>
+                    <redist/>
+                  </action>
+                </entry>
+                <entry name="default route">
+                  <filter>
+                    <type>
+                      <member>bgp</member>
+                    </type>
+                    <destination>
+                      <member>0.0.0.0/0</member>
+                    </destination>
+                  </filter>
+                  <priority>10</priority>
+                  <action>
+                    <redist/>
+                  </action>
+                </entry>
+                <entry name="98.181.88.200">
+                  <filter>
+                    <type>
+                      <member>connect</member>
+                    </type>
+                    <destination>
+                      <member>98.181.88.200/29</member>
+                    </destination>
+                  </filter>
+                  <priority>20</priority>
+                  <action>
+                    <redist/>
+                  </action>
+                </entry>
+              </redist-profile>
             </protocol>
             <interface>
               <member>ethernet1/1</member>
@@ -517,6 +648,9 @@
               <member>loopback.5</member>
               <member>tunnel.300</member>
             </interface>
+            <admin-dists>
+              <ibgp>20</ibgp>
+            </admin-dists>
           </entry>
         </virtual-router>
         <tunnel>
@@ -649,6 +783,44 @@
                   <action>allow</action>
                   <log-start>no</log-start>
                   <log-end>yes</log-end>
+                </entry>
+                <entry name="allow BGP Untrust" uuid="784e65e3-58b7-418d-873b-f87409d707c1">
+                  <to>
+                    <member>L3 Untrust</member>
+                  </to>
+                  <from>
+                    <member>L3 Untrust</member>
+                  </from>
+                  <source>
+                    <member>192.168.16.32/29</member>
+                    <member>192.168.16.40/29</member>
+                  </source>
+                  <destination>
+                    <member>192.168.16.32/29</member>
+                    <member>192.168.16.40/29</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>bgp</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <source-hip>
+                    <member>any</member>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <rule-type>intrazone</rule-type>
                 </entry>
                 <entry name="allow ping" uuid="d57076bc-f4ea-47d1-99b3-6283061900f3">
                   <to>
@@ -836,6 +1008,22 @@
             </security>
             <nat>
               <rules>
+                <entry name="no-nat" uuid="41ad598c-01e2-417b-8f5b-28be7f9e9d94">
+                  <to>
+                    <member>L3 Untrust</member>
+                  </to>
+                  <from>
+                    <member>L3-Trust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>63.156.58.20</member>
+                    <member>98.181.88.202</member>
+                  </destination>
+                  <service>any</service>
+                </entry>
                 <entry name="Lumen DIPP" uuid="303eccf4-d91d-4b8c-9005-45beca4820a8">
                   <source-translation>
                     <dynamic-ip-and-port>
