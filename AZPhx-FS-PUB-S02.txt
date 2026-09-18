@@ -1,6 +1,5 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:42:07 =~=~=~=~=~=~=~=~=~=~=~=
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.17 16:26:19 =~=~=~=~=~=~=~=~=~=~=~=
 
-AZPhx-FS-PUB-S02#
 AZPhx-FS-PUB-S02#term len 0
 AZPhx-FS-PUB-S02#sh run
 Building configuration...

@@ -1,4 +1,4 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:45:49 =~=~=~=~=~=~=~=~=~=~=~=
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.17 16:57:18 =~=~=~=~=~=~=~=~=~=~=~=
 
 set deviceconfig system type dhcp-client send-hostname yes
 set deviceconfig system type dhcp-client send-client-id no
@@ -271,20 +271,20 @@ set rulebase security rules "allow ospf" destination-hip any
 set rulebase security rules "allow ospf" action allow
 set rulebase security rules "allow ospf" log-start no
 set rulebase security rules "allow ospf" log-end yes
-set rulebase security rules "allow BGP Untrust" to "L3 Untrust"
-set rulebase security rules "allow BGP Untrust" from "L3 Untrust"
-set rulebase security rules "allow BGP Untrust" source [ 192.168.16.32/29 192.168.16.40/29 ]
-set rulebase security rules "allow BGP Untrust" destination [ 192.168.16.32/29 192.168.16.40/29 ]
-set rulebase security rules "allow BGP Untrust" source-user any
-set rulebase security rules "allow BGP Untrust" category any
-set rulebase security rules "allow BGP Untrust" application bgp
-set rulebase security rules "allow BGP Untrust" service application-default
-set rulebase security rules "allow BGP Untrust" source-hip any
-set rulebase security rules "allow BGP Untrust" destination-hip any
-set rulebase security rules "allow BGP Untrust" action allow
-set rulebase security rules "allow BGP Untrust" log-start no
-set rulebase security rules "allow BGP Untrust" log-end yes
-set rulebase security rules "allow BGP Untrust" rule-type intrazone
+set rulebase security rules "allow BGP untrust" to "L3 Untrust"
+set rulebase security rules "allow BGP untrust" from "L3 Untrust"
+set rulebase security rules "allow BGP untrust" source [ 192.168.16.32/29 192.168.16.40/29 ]
+set rulebase security rules "allow BGP untrust" destination [ 192.168.16.32/29 192.168.16.40/29 ]
+set rulebase security rules "allow BGP untrust" source-user any
+set rulebase security rules "allow BGP untrust" category any
+set rulebase security rules "allow BGP untrust" application bgp
+set rulebase security rules "allow BGP untrust" service application-default
+set rulebase security rules "allow BGP untrust" source-hip any
+set rulebase security rules "allow BGP untrust" destination-hip any
+set rulebase security rules "allow BGP untrust" action allow
+set rulebase security rules "allow BGP untrust" log-start no
+set rulebase security rules "allow BGP untrust" log-end yes
+set rulebase security rules "allow BGP untrust" rule-type intrazone
 set rulebase security rules "allow ping" to any
 set rulebase security rules "allow ping" from any
 set rulebase security rules "allow ping" source any
@@ -339,6 +339,19 @@ set rulebase security rules "Permit Site-To-Site Traffic Intrazone" action allow
 set rulebase security rules "Permit Site-To-Site Traffic Intrazone" log-start no
 set rulebase security rules "Permit Site-To-Site Traffic Intrazone" log-end yes
 set rulebase security rules "Permit Site-To-Site Traffic Intrazone" rule-type intrazone
+set rulebase security rules "permit untrust to web server" to L3-Trust
+set rulebase security rules "permit untrust to web server" from "L3 Untrust"
+set rulebase security rules "permit untrust to web server" source any
+set rulebase security rules "permit untrust to web server" destination 63.156.58.10
+set rulebase security rules "permit untrust to web server" source-user any
+set rulebase security rules "permit untrust to web server" category any
+set rulebase security rules "permit untrust to web server" application web-browsing
+set rulebase security rules "permit untrust to web server" service application-default
+set rulebase security rules "permit untrust to web server" source-hip any
+set rulebase security rules "permit untrust to web server" destination-hip any
+set rulebase security rules "permit untrust to web server" action allow
+set rulebase security rules "permit untrust to web server" log-start no
+set rulebase security rules "permit untrust to web server" log-end yes
 set rulebase security rules "allow all" to [ "L3 Untrust" L3-Trust SITE-TO-SITE ]
 set rulebase security rules "allow all" from L3-Trust
 set rulebase security rules "allow all" source any
@@ -373,6 +386,12 @@ set rulebase nat rules "Cox DIPP" source any
 set rulebase nat rules "Cox DIPP" destination any
 set rulebase nat rules "Cox DIPP" service any
 set rulebase nat rules "Cox DIPP" to-interface ethernet1/3
+set rulebase nat rules "web server" destination-translation translated-address 172.16.36.21
+set rulebase nat rules "web server" to "L3 Untrust"
+set rulebase nat rules "web server" from "L3 Untrust"
+set rulebase nat rules "web server" source any
+set rulebase nat rules "web server" destination 63.156.58.10
+set rulebase nat rules "web server" service service-http
 set rulebase default-security-rules rules interzone-default action deny
 set rulebase default-security-rules rules interzone-default log-start no
 set rulebase default-security-rules rules interzone-default log-end yes
@@ -395,4 +414,5 @@ set mgt-config users lab permissions role-based superuser yes
 set mgt-config users lab phash $5$thjlogci$r3m5WphqLczge8kbOM5fU3I7rqXg1ycrDc.wwRz/UN6
 set mgt-config password-complexity enabled yes
 set mgt-config password-complexity minimum-length 3
-[edit]
+[edit]                                                                          
+lab@PHX-DC-FW01_LAB# 

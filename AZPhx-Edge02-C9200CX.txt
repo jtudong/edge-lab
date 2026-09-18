@@ -1,13 +1,12 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:39:06 =~=~=~=~=~=~=~=~=~=~=~=
-
-AZPhx-Edge02-C9200CX#term len 0
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.17 16:23:36 =~=~=~=~=~=~=~=~=~=~=~=
+term len 0
 AZPhx-Edge02-C9200CX#sh run
 Building configuration...
 
-Current configuration : 2716 bytes
+Current configuration : 2849 bytes
 !
-! Last configuration change at 10:03:32 mst Thu Sep 3 2026
-! NVRAM config last updated at 11:05:48 mst Thu Sep 3 2026
+! Last configuration change at 11:38:11 mst Tue Sep 15 2026
+! NVRAM config last updated at 14:37:24 mst Thu Sep 17 2026
 !
 version 15.2
 service timestamps debug datetime msec localtime show-timezone year
@@ -98,6 +97,9 @@ router bgp 32056
  neighbor 192.168.16.42 remote-as 32056
  neighbor 192.168.16.42 next-hop-self
  neighbor 192.168.16.42 soft-reconfiguration inbound
+ neighbor 192.168.16.45 remote-as 32056
+ neighbor 192.168.16.45 next-hop-self
+ neighbor 192.168.16.45 soft-reconfiguration inbound
 !
 ip forward-protocol nd
 !
@@ -148,8 +150,8 @@ line aux 0
 line vty 0 4
  login
 !
-ntp server pool.ntp.org
 ntp server 34.208.249.133
+ntp server pool.ntp.org
 !
 !
 end

@@ -784,7 +784,7 @@
                   <log-start>no</log-start>
                   <log-end>yes</log-end>
                 </entry>
-                <entry name="allow BGP Untrust" uuid="784e65e3-58b7-418d-873b-f87409d707c1">
+                <entry name="allow BGP untrust" uuid="9235aee3-3a2f-4490-b21b-7ae87a9ba3e3">
                   <to>
                     <member>L3 Untrust</member>
                   </to>
@@ -967,6 +967,41 @@
                   <log-end>yes</log-end>
                   <rule-type>intrazone</rule-type>
                 </entry>
+                <entry name="permit untrust to web server" uuid="df0beec6-5e55-4d9f-a3f0-dd0aa7b9c05d">
+                  <to>
+                    <member>L3-Trust</member>
+                  </to>
+                  <from>
+                    <member>L3 Untrust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>63.156.58.10</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>web-browsing</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <source-hip>
+                    <member>any</member>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                </entry>
                 <entry name="allow all" uuid="483517e2-8e5a-4ecf-957e-bbf309253a75">
                   <to>
                     <member>L3 Untrust</member>
@@ -1008,7 +1043,7 @@
             </security>
             <nat>
               <rules>
-                <entry name="no-nat" uuid="41ad598c-01e2-417b-8f5b-28be7f9e9d94">
+                <entry name="no-nat" uuid="97cc66b2-ce68-4459-a453-9855fb4dbc95">
                   <to>
                     <member>L3 Untrust</member>
                   </to>
@@ -1071,6 +1106,24 @@
                   </destination>
                   <service>any</service>
                   <to-interface>ethernet1/3</to-interface>
+                </entry>
+                <entry name="web server" uuid="9ddb152a-abdd-4cd4-85b0-a1d56a805546">
+                  <destination-translation>
+                    <translated-address>172.16.36.21</translated-address>
+                  </destination-translation>
+                  <to>
+                    <member>L3 Untrust</member>
+                  </to>
+                  <from>
+                    <member>L3 Untrust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>63.156.58.10</member>
+                  </destination>
+                  <service>service-http</service>
                 </entry>
               </rules>
             </nat>

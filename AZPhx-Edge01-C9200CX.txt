@@ -1,13 +1,12 @@
-=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.03 11:36:24 =~=~=~=~=~=~=~=~=~=~=~=
-
-AZPhx-Edge01-C9200CX#term len 0
+=~=~=~=~=~=~=~=~=~=~=~= KiTTY log 2026.09.17 16:20:46 =~=~=~=~=~=~=~=~=~=~=~=
+term len 0
 AZPhx-Edge01-C9200CX#sh run
 Building configuration...
 
 Current configuration : 2800 bytes
 !
-! Last configuration change at 09:04:46 MST Thu Sep 3 2026
-! NVRAM config last updated at 11:05:54 MST Thu Sep 3 2026
+! Last configuration change at 14:53:48 MST Wed Sep 9 2026
+! NVRAM config last updated at 14:55:04 MST Wed Sep 9 2026
 !
 version 15.2
 service timestamps debug datetime msec localtime show-timezone year
@@ -121,10 +120,10 @@ ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
 ip prefix-list DefaultInternetPl seq 10 permit 0.0.0.0/0
 !
-ip prefix-list ShamrockPL seq 10 permit 63.156.58.0/24
+ip prefix-list ShamrockPl seq 10 permit 63.156.58.0/24
 !
 route-map OutboundRm permit 10
- match ip address prefix-list ShamrockPL
+ match ip address prefix-list ShamrockPl
 !
 route-map InboundRm permit 10
  match ip address prefix-list DefaultInternetPl
