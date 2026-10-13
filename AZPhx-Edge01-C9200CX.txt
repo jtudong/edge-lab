@@ -23,7 +23,7 @@ logging buffered 32768
 !
 username lab privilege 15 password 0 lab
 username cisco privilege 15 password 0 cisco
-username localadmin privilege 15 password 0 5ham!!r0ck
+!
 no aaa new-model
 clock timezone MST -7 0
 !
