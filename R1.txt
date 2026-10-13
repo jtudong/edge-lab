@@ -74,7 +74,7 @@ multilink bundle-name authenticated
 !
 username lab privilege 15 password 0 lab
 username cisco privilege 15 password 0 cisco
-username localadmin privilege 15 password 0 5ham!!r0ck
+!
 !
 redundancy
 !
